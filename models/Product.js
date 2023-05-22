@@ -9,16 +9,19 @@ class Product extends Model {}
 // set up fields and rules for Product model
 Product.init(
   {
+    //id column as integer, not allowing null, auto increments, and is primary key
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
+    //primary key column as string and doesn't allow null
     product_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    //price column as decimal value, doesn't allow null, and validates that it's in decimal format
     price: {
       type: DataTypes.DECIMAL,
       allowNull: false,
@@ -26,6 +29,7 @@ Product.init(
         isDecimal: true
       },
     },
+    //stock column as integer, doesn't allow null, default value is 10, and validates that it's in numeric format
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -34,6 +38,7 @@ Product.init(
         isNumeric: true
       },
     },
+    //category_id column as integer, does allow null, and references the is a value from the id column in the category table
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: true,

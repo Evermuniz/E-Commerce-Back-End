@@ -5,7 +5,8 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
   Tag.findAll({
-    include: [{model: Product, through: ProductTag}],
+    //auto join the product table using the product tag model
+    include: [{model: Product, through: ProductTag}], 
   })
     .then((tag) => res.json(tag))
     .catch((err) => res.status(500).json(err));
@@ -14,6 +15,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Tag.findOne({
     where: { id: req.params.id },
+    //auto join the product table using the product tag
     include: [{ model: Product, through: ProductTag }],
   })
     .then((tag) => res.json(tag))
